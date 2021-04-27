@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="../stylesheets/dropdown.css">
+    <link rel="stylesheet" href="../stylesheets/forms.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../javascripts/dashboard.js"></script>
+</head>
+
+<body>
+    <header>
+        <span id="headertitle">
+        Intelligent Awareness 
+        </span>
+        <div>
+            <span id='userMenu' onclick=login()> Login | Sign up </span> <img src="../images/PikPng.com_profile-icon-png_805068.png">
+        </div>
+    </header>
+    <main>
+        <p id='dashtitle'>Dashboard</p>
+        <div id='dashboardContent'>
+            <span id='A'>Tasks <img onclick=openTasks() class='buttonsContent' src="../images/task.png" ></span>
+            <span id='B'>Notifications<img onclick=openNotifs() class='buttonsContent' id='imagemessages' src="../images/messages.png" ></span>
+        </div>
+
+    </main>
+    <span id='MiddleBox'></span>
+
+
+</body>
+<footer>
+    <div> Contact us by email: <a href=" mailto:fernandolamarsantos@gmail.com "> fernandolamarsantos@gmail.com</a></div>
+</footer>
+
+</html>

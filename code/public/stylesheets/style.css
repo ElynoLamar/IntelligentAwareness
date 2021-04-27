@@ -11,7 +11,7 @@ html {
 
 header {
     background-color: #0299f7;
-    width: 80%;
+    width: 95%;
     height: 70px;
     border-radius: 25px;
     display: flex;
@@ -19,8 +19,9 @@ header {
     color: white;
     font-size: 30;
     position: absolute;
-    top: 5vh;
-    left: 10%;
+    top: 2vh;
+    left: 2.5%;
+    z-index: 1;
 }
 
 footer {
@@ -29,9 +30,11 @@ footer {
     padding: auto;
     background-color: #0299f7;
     width: 100%;
-    padding-top: 4vh;
-    padding-bottom: 4vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
     z-index: 1;
+    position: absolute;
+    bottom: 0;
 }
 
 nav {
@@ -75,6 +78,7 @@ header div img {
 header div {
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 #headertitle {

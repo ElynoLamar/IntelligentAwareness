@@ -1,0 +1,79 @@
+body {
+    display: grid;
+    grid-template-areas: 'h' 'n';
+}
+
+header {
+    grid-area: h;
+}
+
+footer {
+    grid-area: f;
+}
+
+main {
+    grid-area: n;
+    background-color: #ACB9E8;
+    width: 90%;
+    height: 70vh;
+    border-radius: 25px;
+    color: white;
+    font-size: 30;
+    top: 15vh;
+    left: 5%;
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    color: black;
+}
+
+#dashboardContent {
+    display: grid;
+    grid-template-areas: 'title .' 'A B';
+    justify-content: center;
+    justify-content: space-around;
+}
+
+#dashtitle {
+    grid-area: title;
+}
+
+#A {
+    grid-area: A;
+}
+
+#B {
+    grid-area: B;
+}
+
+#imagemessages {
+    padding-top: 5vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.buttonsContent {
+    cursor: pointer;
+}
+
+#C {
+    grid-area: C;
+}
+
+#D {
+    grid-area: D;
+}
+
+#dashboardContent>span {
+    background-color: #0299f7;
+    width: 60vh;
+    height: 60vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+#dashboardContent>span>img {
+    padding-bottom: 20px;
+}
