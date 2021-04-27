@@ -1,0 +1,17 @@
+Create table Password(id_password int not null,
+			CONSTRAINT PasswordPK PRIMARY KEY(id_password));
+
+
+Create table User (id_user int not null AUTO_INCREMENT, password_user int not null, email_user varchar(50) not null, age_user int not null, local_user varchar(250),
+			CONSTRAINT UserPK PRIMARY KEY (id_user),
+			CONSTRAINT foreign key (password_user) references Password(id_password));
+
+
+Create table Community(id_community int not null, name_community varchar(30) not null, local_community varchar(250));
+
+
+Create table Target(id_target int not null, id_community int not null);
+
+Create table TaskState(id_taskState int not null, name_taskState varchar(20) not null);
+
+Create table Task(id_task int not null, monitor_task int not null, community_task int not null, 
