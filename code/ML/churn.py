@@ -1,4 +1,5 @@
 #import desired packages
+from numpy import random
 import tensorflow as tf
 import tensorflow.compat.v1 as tf ## fix que encontrei no site deles
 tf.disable_v2_behavior()   # dizia: AttributeError: module 'tensorflow' has no attribute 'placeholder' p/ linha 43
@@ -78,20 +79,20 @@ for step in range(epoch):
 
 
 
-
-#random testing at Sn.130
-a=data.loc[44,['PW-Available-Tasks',	'PW-Accepted-Tasks',	'PW-Canceled-Tasks',	'PW-Concluded-Tasks',	'PW-Times-Acessed-Platform',	'PW-Time-spent-online',	'PW-avg-days-conclude-Task',	'leader-previous-week',	'PW-leader-task-Concluded',	'TW-Available-Tasks',	'TW-Accepted-Tasks',	'TW-Canceled-Task',	'TW-Concluded-Task',	'TW-Times-Acessed-Platform',	'TW-Time-spent-online',	'TW-avg-days-to-conclude-Task',	'TW-leader-previous-week'	,'TW-leader-task-Concluded']]
+randNum = random.randint(0,400)
+#random testing 
+a=data.loc[randNum,['PW-Available-Tasks',	'PW-Accepted-Tasks',	'PW-Canceled-Tasks',	'PW-Concluded-Tasks',	'PW-Times-Acessed-Platform',	'PW-Time-spent-online',	'PW-avg-days-conclude-Task',	'leader-previous-week',	'PW-leader-task-Concluded',	'TW-Available-Tasks',	'TW-Accepted-Tasks',	'TW-Canceled-Task',	'TW-Concluded-Task',	'TW-Times-Acessed-Platform',	'TW-Time-spent-online',	'TW-avg-days-to-conclude-Task',	'TW-leader-previous-week'	,'TW-leader-task-Concluded']]
 b=a.values.reshape(1,18)
 largest = sess.run(tf.arg_max(y,1), feed_dict={x: b})[0]
 print(largest)
 if largest==0:
-    print ("largest 0")
+    print ("We predict this person has churn and probably had a busy week")
 elif largest==1:
-    print (" largets 1 We predict this person has churn and probably has a busy life")
+    print ("We predict this person has churn and probably had an active week")
 elif largest ==2:
-    print ("largets 2 We predict this person has churn and probably has a busy life")
+    print ("We predict this person doesnt have churn and probably had a busy week")
 else:
-    print ("largets 3 We predict this person has churn and probably has a busy life")    
+    print ("We predict this person doesnt have churn and probably had an active week")    
 
 print ("Accuracy is: "+ str(sess.run(accuracy,feed_dict={x: x_test, y_:[t for t in y_test.to_numpy()]})))
 
