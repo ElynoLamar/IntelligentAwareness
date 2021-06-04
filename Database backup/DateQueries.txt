@@ -1,0 +1,13 @@
+SELECT data as EstaSemana FROM test
+WHERE date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
+
+SELECT data as SemanaPassada FROM test
+WHERE date >= curdate()-7 - INTERVAL DAYOFWEEK(curdate())+6 DAY
+AND date < curdate()-7 - INTERVAL DAYOFWEEK(curdate())-1 DAY
+
+SELECT data as resto FROM test
+WHERE date < curdate()-14
+
+select event_task as TaskID, name_event as TaskName, target_task as Target, state_task as State,date_event as Date  from Task, Event where Task.event_task=Event.id_event and Task.target_task=2 and date_event >= curdate()  - INTERVAL DAYOFWEEK(curdate())+6 DAY
+AND date_event < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY

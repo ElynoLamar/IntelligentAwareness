@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="../stylesheets/forms.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../javascripts/dashboard.js"></script>
+    <script src="../javascripts/test.js"></script>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -23,7 +27,14 @@
     </header>
     <main>
         <p id='dashtitle'>Dashboard</p>
-
+        <div id="kpiDropdown" style='display:hidden'></div>
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+            <button class="btn" onclick="filterSelection('ChurnBusy')"> Churn and Busy</button>
+            <button class="btn" onclick="filterSelection('ChurnActive')"> Churn and Active</button>
+            <button class="btn" onclick="filterSelection('NoChurnBusy')"> No Churn and Busy</button>
+            <button class="btn" onclick="filterSelection('NoChurnActive')"> No churn and Active</button>
+        </div>
         <div id='dashboardContent'>
         </div>
 

@@ -5,10 +5,13 @@ window.onload = function() {
 
 function generate() {
     var contador = 1;
-    var numOfEachProfile = 100;
+    var numOfEachProfile = 2;
     var meanAvailableTaskTW = 14
     var varAvailableTaskTW = 8
+
+
     var availableTaskPW = Math.floor(Math.random() * (meanAvailableTaskTW - varAvailableTaskTW)) + varAvailableTaskTW; // 8 a 13 tasks
+    alert(availableTaskPW)
     var availableTaskTW = Math.floor(Math.random() * (meanAvailableTaskTW - varAvailableTaskTW)) + varAvailableTaskTW; // 8 a 13 tasks
     let block = "";
     block += "<table>";
