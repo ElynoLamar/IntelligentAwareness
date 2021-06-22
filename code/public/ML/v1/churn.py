@@ -22,19 +22,18 @@ print("Lines in the dataset: "+ str(num_lines))
 print(data["Profile"].value_counts())
 
 sns.FacetGrid(data, hue="Profile", height=5) \
-  .map(plt.scatter, "PW-Accepted-Tasks", "PW-Available-Tasks") \
+  .map(plt.scatter, "PW-Times-Acessed-Platform", "PW-Time-spent-online") \
    .add_legend()
 
 
 #sns.pairplot(data, hue="Profile", height=5)
-#plt.show()
+plt.show()
 
 p1=np.asarray([1,0,0,0])
 p2=np.asarray([0,1,0,0])
 p3=np.asarray([0,0,1,0])
 p4=np.asarray([0,0,0,1])
-data['Profile'] = data['Profile'].map({1: p1, 2: p2,3:p3,4:p4})
-
+data['Profile'] = data['Profile'].map({1:p1, 2:p2, 3:p3, 4:p4})
 
 
 #shuffle the data
@@ -76,7 +75,7 @@ sess = tf.InteractiveSession()
 init = tf.global_variables_initializer()
 sess.run(init)
 #number of interations
-epoch=2
+epoch=200
 
 for step in range(epoch):
    _, c=sess.run([train_step,cross_entropy], feed_dict={x: x_input, y_:[t for t in y_input.to_numpy()]})
@@ -93,7 +92,11 @@ b=a.values.reshape(1,18)
 largest = sess.run(tf.arg_max(y,1), feed_dict={x: b})[0]
 
 largest += 1
-print(largest)
+#print(largest)
+#W.eval()
+#print('a = ', _)
+#print('b = ', c)
+ 
 if largest==1:
     print ("We predict this person has churn and probably had a busy week")
 elif largest==2:
@@ -113,7 +116,7 @@ print ("Accuracy is: "+ str(sess.run(accuracy,feed_dict={x: x_test, y_:[t for t 
 #        self.bias = bias
 
 #pickledModeSafe = pickledModel(W,b)
-#pickle.dump(pickledModeSafe, open( "ML/save.p", "wb" ) )
+#pickle.dump(1, open( "ML/save.p", "wb" ))
 
 
 # AttributeError: 'Series' object has no attribute 'reshape', trocar reshape por values.reshape

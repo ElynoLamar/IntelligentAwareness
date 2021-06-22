@@ -9,13 +9,12 @@ const pool = mysql.createPool({
     password: '6aXdNVugKW',
     database: 'eYxyFJmtSn'
     */
-    connectionLimit: 300,
+    connectionLimit: 10,
     host: 'remotemysql.com',
     port: 3306,
     user: 'yoP9oIXnRG',
     password: 'COip73bLeK',
     database: 'yoP9oIXnRG'
-
 })
 
 

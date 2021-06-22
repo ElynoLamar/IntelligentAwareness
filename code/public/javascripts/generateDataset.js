@@ -5,7 +5,7 @@ window.onload = function() {
 
 function generate() {
     var contador = 1;
-    var numOfEachProfile = 2;
+    var numOfEachProfile = 2000;
     var meanAvailableTaskTW = 14
     var varAvailableTaskTW = 8
 
@@ -158,3 +158,6 @@ function leaderTaskConcluded(concludedChance, lead) {
         } else return 0; //no
     } else return 0; //no
 }
+
+
+//
