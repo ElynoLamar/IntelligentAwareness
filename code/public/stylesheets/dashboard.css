@@ -82,13 +82,13 @@ main {
     grid-area: D;
 }
 
-#dashboardContent>span {
+.filterDiv {
     margin: 5px;
     background-color: white;
-    width: 60vh;
+    width: 55vh;
     height: 40vh;
     color: white;
-    display: flex;
+    display: none;
     flex-direction: column;
     border-radius: 25px;
     align-items: center;
@@ -105,24 +105,8 @@ main {
     padding-bottom: 20px;
 }
 
-.filterDiv {
-    float: left;
-    background-color: #2196F3;
-    color: #ffffff;
-    width: 100px;
-    line-height: 100px;
-    text-align: center;
-    margin: 2px;
-    display: none;
-}
-
 .show {
     display: block;
-}
-
-.container {
-    margin-top: 20px;
-    overflow: hidden;
 }
 
 

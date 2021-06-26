@@ -4,8 +4,10 @@ import numpy as np
 import tensorflow as tf
 from keras.utils import to_categorical
 import tensorflowjs as tfjs
+from sklearn.model_selection import train_test_split
 
-churn_dataset_fp = "ML/dataset.data"
+
+churn_dataset_fp ="models/ML/dataset.data"
 
 #train_dataset_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
 #train_dataset_fp = tf.keras.utils.get_file(fname=os.path.basename(train_dataset_url),corigin=train_dataset_url)
@@ -31,12 +33,12 @@ churn_dataset=churn_dataset.iloc[np.random.permutation(len(churn_dataset))]
 #Index reorganizado
 churn_dataset=churn_dataset.reset_index(drop=True)
 
+
 print(churn_dataset.head())
 
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(18,activation=tf.nn.relu, input_shape=(18,)),  # input shape require
-    tf.keras.layers.Dense(18,activation=tf.nn.relu),  # input shape require
     tf.keras.layers.Dense(4, activation=tf.nn.softmax)
 ])
 
@@ -58,18 +60,22 @@ churn_dataset[label_name] = churn_dataset[label_name].map({1:0,2:1,3:2,4:3})
 labels= churn_dataset[label_name].to_numpy()
 labels = to_categorical(labels)
 temp = churn_dataset.drop(columns='Profile')
-print(temp)
 #features = iris_dataset.copy().to_numpy()
 #labels = features.pop(label_name)
 features=temp.to_numpy()
-print(type(labels))
-print(type(features))
-print(labels.shape)
-
+print("***********")
+print(features[0:18])
+print("***********")
+features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size=0.2, random_state=0)
+print(features_train[0:18])
+print("***********")
+print(features_test[0:18])
 print(features.shape)
-history = model.fit(features, labels, epochs=20, validation_split = 0.2)
+history = model.fit(features_train, labels_train, epochs=20)
 print(history)
-
+loss, accuracy = model.evaluate(features_test, labels_test, verbose=0)
+print('Test loss:', loss)
+print('Test accuracy:', accuracy)
 #tf.keras.utils.plot_model(model = model , rankdir="LR", dpi=72, show_shapes=True)
 logits = model(np.array([[11,5,4,0,1.75,183,6,1,0,11,6,4,1,0.53,51,5,1,0]]),training=False)
 print(logits)

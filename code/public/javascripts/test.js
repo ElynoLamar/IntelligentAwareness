@@ -1,10 +1,12 @@
 var loggedUser = 0;
 window.onload = function() {
     startDashboard(1)
+    filterstart();
     let block = ""
-    block += "<div id='KPIselector'><label style= 'font-size:15;float:left'>Choose your KPI:   </label><select id='kpivalue' onchange='changeKPI()' style= 'float:left'><option value=1>Available Tasks</option><option value=2>Accepted Tasks %</option><option value=3>Cancelled Tasks %</option><option value=4>Completed Tasks %</option></select></div>"
+    block += "<div id='KPIselector'><label style= 'font-size:15;float:left'>Choose your KPI:   </label><select id='kpivalue' onchange='changeKPI()' style= 'float:left'><option value=1>Available Tasks</option><option value=2>Accepted Tasks %</option><option value=3>Cancelled Tasks %</option><option value=4>Completed Tasks %</option><option value=5>Times visited platform</option><option value=6>Seconds spent</option></select></div>"
     document.getElementById('kpiDropdown').innerHTML = block;
     document.getElementById('teste').innerHTML = "<input type='button' onclick='teste()' value='CLICK HERE'>  </input>";
+
 }
 
 function teste() {
@@ -156,7 +158,14 @@ async function startDashboard(type) {
         targets[i].W2tasks = await getTargets1WeekOldTasksObj(targets[i].id_target)
         targets[i].W3tasks = await getTargets2WeeksOldTasksObj(targets[i].id_target)
         targets[i].W4tasks = await getTargets3WeeksOldTasksObj(targets[i].id_target)
-        block += "<span><canvas id='myChart" + i + "'></canvas></span>"
+        if (targets[i].prediction == 1)
+            block += "<span  class='filterDiv ccb' ><canvas  id='myChart" + i + "'></canvas></span>"
+        if (targets[i].prediction == 2)
+            block += "<span  class='filterDiv cca' ><canvas  id='myChart" + i + "'></canvas></span>"
+        if (targets[i].prediction == 3)
+            block += "<span class='filterDiv ncb'><canvas   id='myChart" + i + "'></canvas></span>"
+        if (targets[i].prediction == 4)
+            block += "<span class='filterDiv nca' ><canvas  id='myChart" + i + "'></canvas></span>"
     }
     console.log(JSON.stringify(targets[0].W2tasks));
     document.getElementById("dashboardContent").innerHTML = block;
@@ -174,6 +183,7 @@ async function startDashboard(type) {
             // console.log(JSON.stringify(targets[i].evaluate));
         linegraph(targets[i].evaluate, "myChart" + i, type);
     }
+    filterSelection('all');
 }
 
 
@@ -199,9 +209,10 @@ function calculateTasksKPIs(targetObj) {
     return taskArray;
 }
 
-filterSelection("all")
+
 
 function filterSelection(c) {
+
     var x, i;
     x = document.getElementsByClassName("filterDiv");
     if (c == "all") c = "";
@@ -232,15 +243,14 @@ function w3RemoveClass(element, name) {
     element.className = arr1.join(" ");
 }
 
-/**
-    // Add active class to the current button (highlight it)
-    var btnContainer = document.getElementById("myBtnContainer");
-    var btns = btnContainer.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
-*/
+function filterstart() {
+
+    let block = "";
+    block += "<button class=btn active onclick=filterSelection('all')> Show all</button>"
+    block += "<button class=btn onclick=filterSelection('ccb')> Churn and Busy</button>"
+    block += "<button class=btn onclick=filterSelection('cca')> Churn and Active</button>"
+    block += "<button class=btn onclick=filterSelection('ncb')> No Churn and Busy</button>"
+    block += "<button class=btn onclick=filterSelection('nca')> No churn and Active</button>"
+    document.getElementById("myBtnContainer").innerHTML = block;
+
+}

@@ -11,6 +11,8 @@ Create table Community(id_community int not null AUTO_INCREMENT, name_community 
 Create table Target(id_target int not null, id_community int not null);
 ALTER TABLE Target
 ADD leader_target int;
+ALTER TABLE Target
+ADD prediction int;
 
 Create table Monitor(id_monitor int not null, id_community int not null, leader_monitor boolean not null);
 
