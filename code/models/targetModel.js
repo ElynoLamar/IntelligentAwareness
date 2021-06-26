@@ -47,3 +47,16 @@ module.exports.getTargets3WeeksOldTasks = async function(communityID, userID) {
         return err;
     }
 }
+
+
+module.exports.getTargets = async function() {
+    try {
+        var query = "Select DISTINCT target_task, name_user from User, Task where id_user=target_task";
+        const targets = await pool.query(query);
+        console.log(query);
+        return targets;
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}

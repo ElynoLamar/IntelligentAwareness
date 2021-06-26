@@ -36,6 +36,7 @@ print(churn_dataset.head())
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(18,activation=tf.nn.relu, input_shape=(18,)),  # input shape require
+    tf.keras.layers.Dense(18,activation=tf.nn.relu),  # input shape require
     tf.keras.layers.Dense(4, activation=tf.nn.softmax)
 ])
 

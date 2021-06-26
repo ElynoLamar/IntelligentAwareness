@@ -26,4 +26,9 @@ router.get('/:targetID/tasks/week/4', async function(req, res, next) {
     res.send(tasks);
 });
 
+router.get('/', async function(req, res, next) {
+    let targets = await mTarget.getTargets();
+    res.send(targets);
+});
+
 module.exports = router;
