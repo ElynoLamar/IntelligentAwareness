@@ -1,0 +1,16 @@
+Download and install both VSCode(or another compatible IDE of your choice)
+Download and install Node.js, choose LTS version
+create a directory for the project
+open node js command prompt
+cd to the directory
+write: npm install -g express-generator
+create a project folder by writing:
+express --git --no-view PROJECTNAME
+now open vscode and on File>Open folder.. search for your PROJECTNAME folder
+press CTRL+SHIFT+Ç to open a new terminal, or you can also open from the Terminal tab up top
+write npm install
+write npm start
+stop the server by killing the terminal or pressing ctrl+C two times
+now write: npm install mysql --save --save-exact
+
+DONE

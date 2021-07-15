@@ -5,19 +5,17 @@ window.onload = function() {
     let block = ""
     block += "<div id='KPIselector'><label style= 'font-size:15;float:left'>Choose your KPI:   </label><select id='kpivalue' onchange='changeKPI()' style= 'float:left'><option value=1>Available Tasks</option><option value=2>Accepted Tasks %</option><option value=3>Cancelled Tasks %</option><option value=4>Completed Tasks %</option><option value=5>Times visited platform</option><option value=6>Seconds spent</option></select></div>"
     document.getElementById('kpiDropdown').innerHTML = block;
-    document.getElementById('teste').innerHTML = "<input type='button' onclick='teste()' value='CLICK HERE'>  </input>";
 
 }
 
-function teste() {
-    window.location = 'dataset.html';
-}
 
+//According to "select KPI" dropdown option, changes all the graphs accordingly
 function changeKPI() {
     var kpi = document.getElementById("kpivalue");
     var selectedKPi = kpi.options[kpi.selectedIndex].value;
     startDashboard(selectedKPi)
 }
+//gets all the communities targets
 async function getCommunitysTargetObj(id) {
     try {
         var targets = await $.ajax({
@@ -30,7 +28,7 @@ async function getCommunitysTargetObj(id) {
         console.log(err);
     }
 }
-
+//gets this targets weeks performance
 async function getTargetsThisWeeksTasksObj(id) {
     try {
         var tasks = await $.ajax({
@@ -43,7 +41,7 @@ async function getTargetsThisWeeksTasksObj(id) {
         console.log(err);
     }
 }
-
+//gets this targets last weeks performance
 async function getTargets1WeekOldTasksObj(id) {
     try {
         var tasks = await $.ajax({
@@ -56,7 +54,7 @@ async function getTargets1WeekOldTasksObj(id) {
         console.log(err);
     }
 }
-
+//gets this targets last 2 weeks performance
 async function getTargets2WeeksOldTasksObj(id) {
     try {
         var tasks = await $.ajax({
@@ -69,6 +67,7 @@ async function getTargets2WeeksOldTasksObj(id) {
         console.log(err);
     }
 }
+//gets this targets last 3 weeks performance
 async function getTargets3WeeksOldTasksObj(id) {
     try {
         var tasks = await $.ajax({
@@ -81,7 +80,7 @@ async function getTargets3WeeksOldTasksObj(id) {
         console.log(err);
     }
 }
-
+//draws a linegraph according the KPI selected(Y axis) and the chronological axis (X axis)
 function linegraph(target, container, type) {
     let dataArray = []
     let yMax = 1.20
@@ -123,7 +122,7 @@ function linegraph(target, container, type) {
         data,
         options: {
             display: true,
-            text: "teste",
+            text: "TEST",
             fontSize: 25,
             scales: {
                 y: {
@@ -141,14 +140,15 @@ function linegraph(target, container, type) {
 
 }
 
-
+//gets a random RBGA color, can be used to identify each targets performance (like, red colors for churn and blue colors for no-churn), at the moment
+//its just randomly generated.
 function random_rgba() {
     var o = Math.round,
         r = Math.random,
         s = 255;
     return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
 }
-
+//refreshes the dashboard according to the KPI selected
 async function startDashboard(type) {
     let block = "";
     var targets = await getCommunitysTargetObj(1);
@@ -186,7 +186,7 @@ async function startDashboard(type) {
     filterSelection('all');
 }
 
-
+// calculates the percentages according to the database performances
 function calculateTasksKPIs(targetObj) {
     let availableTasks = targetObj.length
     let acceptedTasks = 0
@@ -210,9 +210,8 @@ function calculateTasksKPIs(targetObj) {
 }
 
 
-
+//filters buttons
 function filterSelection(c) {
-
     var x, i;
     x = document.getElementsByClassName("filterDiv");
     if (c == "all") c = "";
@@ -221,7 +220,7 @@ function filterSelection(c) {
         if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
     }
 }
-
+//changes classes to be shown or not according to the button selected
 function w3AddClass(element, name) {
     var i, arr1, arr2;
     arr1 = element.className.split(" ");
@@ -230,7 +229,7 @@ function w3AddClass(element, name) {
         if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
     }
 }
-
+//changes classes to be shown or not according to the button selected
 function w3RemoveClass(element, name) {
     var i, arr1, arr2;
     arr1 = element.className.split(" ");
@@ -242,7 +241,7 @@ function w3RemoveClass(element, name) {
     }
     element.className = arr1.join(" ");
 }
-
+//filter buttons
 function filterstart() {
 
     let block = "";

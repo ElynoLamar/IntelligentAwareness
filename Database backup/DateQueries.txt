@@ -1,13 +1,13 @@
-SELECT data as EstaSemana FROM test
-WHERE date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
-AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
+select event_task as TaskID, name_event as TaskName, target_task as Target, community_event as Community, state_task as State,date_event as Date  from Task, Event where community_event = ? and Task.event_task=Event.id_event and Task.target_task=? and date_event between date_sub(now(),INTERVAL 1 WEEK) and now()
 
-SELECT data as SemanaPassada FROM test
-WHERE date >= curdate()-7 - INTERVAL DAYOFWEEK(curdate())+6 DAY
-AND date < curdate()-7 - INTERVAL DAYOFWEEK(curdate())-1 DAY
+select event_task as TaskID, name_event as TaskName, target_task as Target, community_event as Community, state_task as State,date_event as Date  from Task, Event where community_event = ? and Task.event_task=Event.id_event and Task.target_task=? and date_event between date_sub(now(),INTERVAL 2 WEEK) and date_sub(now(),INTERVAL 1 WEEK)
 
-SELECT data as resto FROM test
-WHERE date < curdate()-14
+select event_task as TaskID, name_event as TaskName, target_task as Target, community_event as Community, state_task as State,date_event as Date  from Task, Event where community_event = ? and Task.event_task=Event.id_event and Task.target_task=? and date_event between date_sub(now(),INTERVAL 3 WEEK) and date_sub(now(),INTERVAL 2 WEEK)
+  
+select event_task as TaskID, name_event as TaskName, target_task as Target, community_event as Community, state_task as State,date_event as Date  from Task, Event where community_event = ? and Task.event_task=Event.id_event and Task.target_task=? and date_event between date_sub(now(),INTERVAL 4 WEEK) and date_sub(now(),INTERVAL 3 WEEK)
 
-select event_task as TaskID, name_event as TaskName, target_task as Target, state_task as State,date_event as Date  from Task, Event where Task.event_task=Event.id_event and Task.target_task=2 and date_event >= curdate()  - INTERVAL DAYOFWEEK(curdate())+6 DAY
-AND date_event < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
+Select DISTINCT target_task, name_user from User, Task where id_user=target_task
+
+UPDATE Target SET prediction = ? WHERE id_target = ? and id_community=1
+
+select prediction, name_community, Target.id_target, name_user, age_user from Community, Target, User where Community.id_community = ? and Community.id_community = Target.id_community and Target.id_target = User.id_user
